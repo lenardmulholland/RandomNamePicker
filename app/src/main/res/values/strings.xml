@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Random Name Picker</string>
+    <string name="winner">Winner</string>
+    <string name="choose">Choose</string>
+</resources>
