@@ -12,6 +12,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView winnerTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,14 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
         final List<String> nameList = new ArrayList<>();
         nameList.add("John");
-        nameList.add("Albert");
-        nameList.add("Richard");
-        nameList.add("Zealand");
-        nameList.add("Sophie");
-        nameList.add("George");
-        nameList.add("Trey");
-        nameList.add("Katherine");
-        nameList.add("James");
+        nameList.add("Jake");
+        nameList.add("Lance");
 
         final Button button = findViewById(R.id.choose_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -34,11 +30,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 NamePicker namePicker = new NamePicker();
                 Random randomNumber = new Random();
-                TextView winnerTextView = (TextView) findViewById(R.id.winner_text_view);
-                String name_chosen = namePicker.pickRandomName(nameList, randomNumber);
-                winnerTextView.setText(name_chosen);
+                winnerTextView = findViewById(R.id.winner_text_view);
+                String name_chosen;
+                try {
+                    name_chosen = namePicker.pickRandomName(nameList, randomNumber);
+                    winnerTextView.setText(name_chosen);
+                } catch (Exception e) {
+                    displayError();
+                }
             }
         });
+    }
+
+    private void displayError() {
+        winnerTextView.setText(R.string.no_names_error);
     }
 
 
